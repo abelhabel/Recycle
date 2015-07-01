@@ -15,8 +15,6 @@ def by_pop(amount)
 end
 
 def prompt_customer
-  done = false
-  begin
     puts "How much money will you buy bottles for?"
     reply = gets.chomp.to_i
     bottles = by_pop(reply)
@@ -25,10 +23,9 @@ def prompt_customer
     puts "You bought #{bottles[:bottles]} bottle(s), for #{reply} dollars and got #{bottles[:money_back]} dollar back. #{bottle_surplus_t}. #{cap_surplus_t}."
     puts "Any other customer? (Y/N)"
     reply = gets.chomp
-    if reply.downcase == 'n'
-      done = true;
+    if reply.downcase != 'n'
+      prompt_customer
     end
-  end while !done
 end
 
 prompt_customer
